@@ -5,8 +5,18 @@ import java.util.List;
 
 import auto_radnja.gume.AutoGuma;
 
+/**
+ * Klasa koja predstavlja vulkanizersku radnju i implementira interfejs Radnja.
+ * 
+ * @author Vuk Djedovic
+ * @version 0.6
+ *
+ */
 public class VulkanizerskaRadnja implements Radnja {
 
+	/**
+	 * Lista sa svim gumama u vulkanizerskoj radnji.
+	 */
 	private List<AutoGuma> gume = new LinkedList<AutoGuma>();
 
 	@Override
