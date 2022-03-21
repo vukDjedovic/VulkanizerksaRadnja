@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import auto_radnja.gume.AutoGuma;
 
+
+
+
 public abstract class RadnjaTest {
 
 protected Radnja vulkanizerskaRadnja;
@@ -55,7 +58,6 @@ protected Radnja vulkanizerskaRadnja;
 
 	@Test
 	void testPronadjiGumu() {
-
 		AutoGuma autoGuma1 = new AutoGuma();
 		AutoGuma autoGuma2 = new AutoGuma();
 		AutoGuma autoGuma3 = new AutoGuma();
@@ -80,9 +82,9 @@ protected Radnja vulkanizerskaRadnja;
 		vulkanizerskaRadnja.dodajGumu(autoGuma3);
 		
 		List<AutoGuma> gume = vulkanizerskaRadnja.pronadjiGumu("Bridgestone");
-		assertEquals(1, gume.size());
+		assertEquals(2, gume.size());
 		assertTrue(gume.contains(autoGuma1));
-		
+		assertTrue(gume.contains(autoGuma2));
 	}
 	
 	@Test
@@ -90,5 +92,35 @@ protected Radnja vulkanizerskaRadnja;
 		assertEquals(vulkanizerskaRadnja.pronadjiGumu(null), null);
 	}
 	
+	@Test
+	void testPronadjiGumuNijeUVulkanizerskojRadnji() {
+		AutoGuma autoGuma = new AutoGuma();
+		autoGuma.setMarkaModel("Michelin");
+		autoGuma.setPrecnik(19);
+		autoGuma.setSirina(219);
+		autoGuma.setVisina(69);
+		
+		vulkanizerskaRadnja.dodajGumu(autoGuma);
+		
+		List<AutoGuma> gume = vulkanizerskaRadnja.pronadjiGumu("Tigar");
+		
+		assertTrue(gume.isEmpty());
+	}
+	
+	@Test
+	void testVratiSveKnjige() {
+		AutoGuma autoGuma = new AutoGuma();
+		autoGuma.setMarkaModel("Bridgestone");
+		autoGuma.setPrecnik(20);
+		autoGuma.setSirina(300);
+		autoGuma.setVisina(50);
+		
+		vulkanizerskaRadnja.dodajGumu(autoGuma);
+		
+		List<AutoGuma> autoGume = vulkanizerskaRadnja.vratiSveGume();
+		
+		assertEquals(1, autoGume.size());
+		assertEquals(autoGuma, autoGume.get(0));
+	}
 	
 }
